@@ -1,0 +1,140 @@
+{% extends "blank.html" %}
+{% load static  %}
+{% load crispy_forms_field %}
+{% block page_heading %}
+  <h1>  Course Entry Form </h1>
+{% endblock %}
+
+
+{% block extra_css %}
+ <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css' %}">
+{% endblock %}
+{% block body %}
+
+
+    <!-- Main content -->
+
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">New Course Form </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="quickForm" novalidate="novalidate" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label >Name </label>
+
+                    {% crispy_field form.name 'class' 'form-control' %}
+                     {% if form.name.errors %}
+                         {% for error in form.name.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                  </div>
+                  <div class="form-group">
+                    <label >Overview</label>
+                    {% crispy_field form.overview  %}
+                    {% if form.overview.errors %}
+                         {% for error in form.overview.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                  </div>
+
+                  <div class="form-group">
+                    <label >Description :</label>
+                    {% crispy_field form.description %}
+
+                     {% if form.description.errors %}
+                         {% for error in form.desciption.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-lg-4 col-sm-12">
+                    <label >Durations  (in Months) :</label>
+                    {% crispy_field form.durations 'class' 'form-control' %}
+                    {% if form.durations.errors %}
+                         {% for error in form.durations.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                  </div>
+                      <div class="form-group col-lg-4 col-sm-12">
+                    <label>Fees :</label>
+                    {% crispy_field form.fees 'class' 'form-control' %}
+                    {% if form.fees.errors %}
+                         {% for error in form.fees.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                  </div>
+                      <div class="form-group col-lg-4 col-sm-12">
+                    <label>Status :</label>
+                    {% crispy_field form.status 'class' 'form-control' %}
+                    {% if form.status.errors %}
+                         {% for error in form.status.errors %}
+                             <label class="error"><b>{{ error }}</b></label>
+                         {% endfor %}
+                     {% endif %}
+                </div>
+{#                   <div class="form-group col-lg-3 col-sm-12">#}
+{#                    <label>User :</label>#}
+{#                    {% crispy_field form.user %}#}
+{#                    {% if form.user.errors %}#}
+{#                         {% for error in form.user.errors %}#}
+{#                             <label class="error"><b>{{ error }}</b></label>#}
+{#                         {% endfor %}#}
+{#                     {% endif %}#}
+{#                </div>#}
+                  </div>
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+
+{% endblock %}
+{% block extra_js %}
+
+    <!-- Summernote -->
+<script src="{% static 'plugins/summernote/summernote-bs4.min.js'%}"></script>
+
+
+<script>
+  $(function () {
+    // Summernote
+    $('#id_overview').summernote()
+    $('#id_description').summernote()
+
+    // phone input mask
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+  })
+</script>
+
+
+{% endblock %}
