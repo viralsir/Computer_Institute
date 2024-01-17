@@ -1,0 +1,67 @@
+{% extends "blank.html" %}
+{% load static %}
+{% block extra_css %}
+   {% include "course/datatable_css2.html" %}
+{% endblock %}
+{% block body %}
+     <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Course List  </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example3" class="table table-bordered table-striped display nowrap" style="width: 100%">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Overview</th>
+                    <th>Durations</th>
+                    <th>Fees</th>
+                    <th>status</th>
+                    <th> Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.overview | safe }}</td>
+                            <td>{{ course.durations }}</td>
+                            <td>{{ course.fees }}</td>
+                            <td>{{ course.status }}</td>
+                            <td><a class="btn btn-info btn-sm" href="{% url 'course-update' course.id %}">
+                                <i class="fas fa-pencil-alt">
+                              </i>
+                                edit</a>
+                                <a class="btn btn-primary btn-sm" href="{% url 'course-detail' course.id %}">
+                                <i class="fas fa-folder">
+                              </i>
+                                details </a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'course-delete' course.id %}">
+                                <i class="fas fa-trash">
+                              </i>
+                                delete </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Name</th>
+                    <th>Overview</th>
+                    <th>Durations</th>
+                    <th>Fees</th>
+                    <th>status</th>
+                    <th> Action</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+{% endblock %}
+{% block extra_js %}
+    <!-- DataTables  & Plugins -->
+ {% include "course/datatable_script2.html" %}
+{% endblock %}

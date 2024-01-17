@@ -1,0 +1,817 @@
+{% load static %}
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript"  src="{% static 'dataTables/DataTables-1.11.0/js/jquery.dataTables.min.js' %}"></script>
+{#    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>#}
+{#	  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>#}
+  	<script type="text/javascript" src="{% static 'DataTables/Buttons-2.0.0/js/dataTables.buttons.min.js' %}"></script>
+{#	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>#}
+	<script type="text/javascript" src="{% static 'DataTables/SearchBuilder-1.2.0/js/dataTables.searchBuilder.min.js' %}"></script>
+
+{#    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/searchbuilder/1.1.0/js/dataTables.searchBuilder.min.js"></script>#}
+
+    <script type="text/javascript" language="javascript" src="{% static 'DataTables/DateTime-1.1.1/js/dataTables.dateTime.min.js' %}"></script>
+{#	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/datetime/1.1.0/js/dataTables.dateTime.min.js"></script>#}
+    <script type="text/javascript" language="javascript" src="{% static 'DataTables/JSZip-2.5.0/jszip.min.js' %}"></script>
+{#    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>#}
+	<script type="text/javascript" language="javascript" src="{% static 'DataTables/pdfmake-0.1.36/pdfmake.min.js' %}"></script>
+{#    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>#}
+    <script type="text/javascript" language="javascript" src="{% static 'DataTables/pdfmake-0.1.36/vfs_fonts.js' %}"></script>
+{#    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>#}
+    <script type="text/javascript" language="javascript" src="{% static 'DataTables/Buttons-2.0.0/js/buttons.html5.min.js' %}"></script>
+{#    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>#}
+   <script type="text/javascript" language="javascript" src="{% static 'DataTables/Buttons-2.0.0/js/buttons.print.min.js' %}"></script>
+{#   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>#}
+
+   <script src="{% static 'DataTables/Scroller-2.0.5/js/dataTables.scroller.min.js' %}"></script>
+{#    <script src="https://cdn.datatables.net/scroller/2.0.5/js/dataTables.scroller.min.js"></script>#}
+    <script src="{% static 'DataTables/FixedHeader-3.1.9/js/dataTables.fixedHeader.min.js' %}"></script>
+{#    <script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>#}
+    <script src="{% static 'DataTables/Responsive-2.2.9/js/dataTables.responsive.min.js' %}"></script>
+{#    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>#}
+
+    <script src="{% static 'DataTables/Buttons-2.0.0/js/buttons.colVis.min.js' %}" ></script>
+{#    <script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js'%}"></script>#}
+    <script src="{% static 'DataTables/ColReorder-1.5.4/js/dataTables.colReorder.min.js' %}"></script>
+{#        <script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>#}
+{#    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>#}
+    <script src="{% static 'DataTables/Responsive-2.2.9/js/responsive.bootstrap.min.js' %}" ></script>
+
+<script>
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = dd + '-' + mm + '-' + yyyy;
+//document.write(today);
+
+$(document).ready(function() {
+
+    // task list for employee
+$('#example1').DataTable( {
+        "aaSorting": [],
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        //responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                }
+	} );
+ $('#example2').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                }
+	} );
+ // for task list in group details
+ $('#example31').DataTable( {
+
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        //dom: 'lQBfrtip',
+        //fixedHeader: true,
+        "paging":true,
+        "deferRender":true,
+        "scrollY": '85vh',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller":true,
+        "autoWidth": true,
+
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                },
+                footer:true
+            },'colvis'
+		],colReorder: true,
+        //responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+        "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+
+            // Total over all pages
+            total = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal = api
+                .column( 7, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 7 ).footer() ).html(
+                +pageTotal +'('+ total +')'
+            );
+        }
+	} );
+ // for task list for admin
+ $('#example3').DataTable( {
+
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        //dom: 'lQBfrtip',
+        //fixedHeader: true,
+        "paging":true,
+        "deferRender":true,
+        "scrollY": '85vh',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller":true,
+
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                messageTop:`<h3>Date : ${today}     </h3> `,
+                exportOptions: {
+                    columns: ':visible'
+                },
+                footer:true
+            },'colvis'
+		],colReorder: true,
+        //responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                }
+
+	} );
+  // for invoice datatable
+ $('#example4').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+         "paging":true,
+        "deferRender":true,
+        "scrollY": '85vh',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller":true,
+		//fixedHeader: true,
+        buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                messageTop:`<h3>Date : ${today}</h3>`,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+       // responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+         "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+
+            // Total over all pages
+            total_basic_amount = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_basic_amount = api
+                .column( 7, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 7 ).footer() ).html(
+                +pageTotal_basic_amount +'('+ total_basic_amount +')'
+            );
+
+            // Total over all pages
+            total_cgst = api
+                .column( 8 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_cgst = api
+                .column( 8, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 8 ).footer() ).html(
+                +pageTotal_cgst +'('+ total_cgst +')'
+            );
+
+            // Total over all pages
+            total_sgst = api
+                .column( 9 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_sgst = api
+                .column( 9, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 9 ).footer() ).html(
+                +pageTotal_sgst +' ('+ total_sgst +')'
+            );
+
+            // Total over all pages
+            total_igst = api
+                .column( 10 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_igst = api
+                .column( 10, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 10 ).footer() ).html(
+                +pageTotal_igst +' ('+ total_igst +')'
+            );
+
+            // Total over all pages
+            total_tds = api
+                .column( 11 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_tds = api
+                .column( 11, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 11 ).footer() ).html(
+                +pageTotal_tds +'('+ total_tds +')'
+            );
+
+            // Total over all pages
+            total_pending_amount = api
+                .column( 12 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_pending_amount = api
+                .column( 12, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 12 ).footer() ).html(
+                +pageTotal_pending_amount +' ('+ total_pending_amount +')'
+            );
+
+            // Total over all pages
+            total_bill_amount = api
+                .column( 13 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_bill_amount = api
+                .column( 13, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 13 ).footer() ).html(
+                +pageTotal_bill_amount +' ('+ total_bill_amount +')'
+            );
+
+        }
+	} );
+ // for invoice datatable for client detail page
+ $('#example41').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        fixedHeader: true,
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+         "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+
+            // Total over all pages
+            total_basic_amount = api
+                .column( 5 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_basic_amount = api
+                .column( 5, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 5 ).footer() ).html(
+                +pageTotal_basic_amount +'('+ total_basic_amount +')'
+            );
+
+            // Total over all pages
+            total_cgst = api
+                .column( 6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_cgst = api
+                .column( 6, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 6 ).footer() ).html(
+                +pageTotal_cgst +'('+ total_cgst +')'
+            );
+
+            // Total over all pages
+            total_sgst = api
+                .column( 7 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_sgst = api
+                .column( 7, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 7 ).footer() ).html(
+                +pageTotal_sgst +' ('+ total_sgst +')'
+            );
+
+            // Total over all pages
+            total_igst = api
+                .column( 8 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_igst = api
+                .column( 8, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 8 ).footer() ).html(
+                +pageTotal_igst +' ('+ total_igst +')'
+            );
+
+            // Total over all pages
+            total_tds = api
+                .column( 9 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_tds = api
+                .column( 9, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 9 ).footer() ).html(
+                +pageTotal_tds +'('+ total_tds +')'
+            );
+
+            // Total over all pages
+            total_pending_amount = api
+                .column( 10 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_pending_amount = api
+                .column( 10, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 10 ).footer() ).html(
+                +pageTotal_pending_amount +' ('+ total_pending_amount +')'
+            );
+
+            // Total over all pages
+            total_bill_amount = api
+                .column( 11 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal_bill_amount = api
+                .column( 11, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 11 ).footer() ).html(
+                +pageTotal_bill_amount +' ('+ total_bill_amount +')'
+            );
+
+        }
+	} );
+ // for employee datatable
+  $('#example51').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        "paging":true,
+        "deferRender":true,
+        "scrollY": '85vh',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller":true,
+       // fixedHeader: true,
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                messageTop:`<h3> Date : ${today} </h3>`,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+
+	} );
+  // for receipt datatable
+    $('#example5').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        fixedHeader: true,
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+      "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+
+            // Total over all pages
+            total = api
+                .column( 6 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Total over this page
+            pageTotal = api
+                .column( 6, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+            // Update footer
+            $( api.column( 6).footer() ).html(
+                +pageTotal +' (  '+ total +' total)'
+            );
+        }
+	} );
+} );
+
+
+
+// for group tab in  ref_master html
+$('.exampler1').DataTable( {
+        "aaSorting": [],
+		dom: 'lQBfrtip',
+        "paging":true,
+        "deferRender":true,
+        "scrollY": '85vh',
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller":true,
+       // fixedHeader: true,
+		buttons: [ {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            }, {
+                extend: 'csv',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },  {
+                extend: 'print',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },'colvis'
+		],colReorder: true,
+        //responsive:true,
+        exportOptions: {
+                    columns: ':visible'
+                },
+
+	} );
+
+
+</script>
+
+
