@@ -37,7 +37,7 @@ class DeleteCourse(DeleteView):
         messages.success(self.request, self.success_message)
         return super(DeleteCourse, self).delete(request, *args, **kwargs)
 
-class DetailCourse(LoginRequiredMixin,DetailView):
+class DetailCourse(DetailView):
     model = course
 
 def get_fees(request, course_id):
