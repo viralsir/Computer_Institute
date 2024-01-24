@@ -1,0 +1,15 @@
+
+{% if messages  %}
+       {% for message in messages %}
+           <script>
+                console.log('{{ message }}')
+               Swal.fire({
+                      icon: '{{ message.tags }}',
+                      text: '{{ message }}',
+
+                    })
+           </script>
+
+
+       {% endfor %}
+{% endif %}

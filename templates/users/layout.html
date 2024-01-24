@@ -1,0 +1,342 @@
+{%  load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arham Computer Institute</title>
+
+ {% include "users/css_head_files.html" %}
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{% url 'dashboard' %}" class="nav-link">Home</a>
+      </li>
+
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+
+
+
+      <!-- user profile and signout chat box -->
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img src="{{ user.profile.image.url }}" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline">{{ user.username }}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <li class="user-header bg-primary">
+            <img src="{{ user.profile.image.url }}" width="160" height="160" class="img-circle elevation-2" alt="User Image">
+
+            <p>
+               {{ user.username }}
+              <small>{{ user.email }}</small>
+            </p>
+          </li>
+
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <a href="{% url 'profile' %}" class="btn btn-default btn-flat">Profile</a>
+            <a href="{% url 'logout' %}" class="btn btn-default btn-flat float-right">Sign out</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+            <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="{% url 'dashboard' %}" class="brand-link" style="text-align: center">
+            <img align="center" src="{% static 'logo.png' %}" width="200" height="250" alt="AdminLTE Logo"
+                class="img-thumbnail"  >
+{#            <span class="brand-text font-weight-dark"><p> Arham Computer </br>      Institute </p></span>#}
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+{#            <div class="user-panel mt-3 pb-3 mb-3 d-flex">#}
+{#                <div class="image">#}
+{#          <img src="{{ user.profile.image.url }}" class="img-circle elevation-2" alt="User Image">#}
+{#        </div>#}
+{#        <div class="info">#}
+{#          <a href="{% url 'profile' %}" class="d-block">{{ user.username }}</a>#}
+{#        </div>#}
+{#      </div>#}
+
+      <!-- SidebarSearch Form -->
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+           <li class="nav-item">
+            <a href="{% url 'dashboard' %}" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Dashboard
+
+              </p>
+            </a>
+           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Inquiry
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'inquiry-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'inquiry-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                  Course
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'course-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'course-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View </p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-user-edit"></i>
+              <p>
+                Student
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'student-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'student-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                  Admission
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'admission-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'admission-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-bill"></i>
+              <p>
+                Payments
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'payment-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'payment-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-bill"></i>
+              <p>
+                Certificate
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'Certificate-new' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'Certificate-view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{% block page_heading %}
+                {% endblock %}
+            </h1>
+          </div>
+          <div class="col-sm-6">
+            {% block breadcrumb %}
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+
+            </ol>
+              {% endblock %}
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    {%  block main_content %}
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Title</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          Start creating your amazing application!
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+    {% endblock  %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.1.0-rc
+    </div>
+    <strong>Copyright &copy; 2014-2020 <a href="https://arhaminstitute.com">Arham Computer Institute</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% block endjs %}
+{% include "users/body_end_script.html" %}
+{% include "users/message.html" %}
+    {% block extra_js %}
+    {% endblock %}
+{% endblock %}
+</body>
+</html>

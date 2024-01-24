@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'course',
     'crispy_forms',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,6 +126,7 @@ STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
+LOGIN_REDIRECT_URL='course-new'
+LOGIN_URL='login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK='bootstrap4'
